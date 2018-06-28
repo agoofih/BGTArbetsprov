@@ -87,8 +87,6 @@ class FeedParser : NSObject, XMLParserDelegate {
             
         case "enclosure":
             if let urlString = attributeDict["url"] {
-                print(urlString)
-                print("enc details")
                 currentImageURL += urlString
             } else {
                 print("malformed element: enclosure without url attribute")

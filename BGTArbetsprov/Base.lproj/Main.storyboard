@@ -19,15 +19,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="AFm-xs-RSj">
-                                <rect key="frame" x="0.0" y="20" width="375" height="56"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="56" id="blC-c7-org"/>
-                                </constraints>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EGm-rG-MGt">
-                                <rect key="frame" x="0.0" y="76" width="375" height="591"/>
+                                <rect key="frame" x="0.0" y="70" width="375" height="597"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="feedCell" rowHeight="254" id="lSi-HH-YCv" customClass="TableViewCell" customModule="BGTArbetsprov" customModuleProvider="target">
@@ -84,16 +77,25 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="y7M-W2-Bpb"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dailymail Online Sports" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SYg-Yb-BtL">
+                                <rect key="frame" x="0.0" y="20" width="375" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="zDT-jG-uc9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="SYg-Yb-BtL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="8w1-YW-tCq"/>
                             <constraint firstItem="EGm-rG-MGt" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="DSi-yY-QBj"/>
-                            <constraint firstItem="AFm-xs-RSj" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Ggp-yg-q6n"/>
+                            <constraint firstItem="SYg-Yb-BtL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="L6i-vT-oCF"/>
                             <constraint firstItem="EGm-rG-MGt" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="MPV-Up-vPr"/>
-                            <constraint firstItem="AFm-xs-RSj" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="OqY-2J-QDm"/>
-                            <constraint firstItem="AFm-xs-RSj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Z3B-52-klu"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="SYg-Yb-BtL" secondAttribute="trailing" id="YEq-7q-Xyl"/>
+                            <constraint firstItem="EGm-rG-MGt" firstAttribute="top" secondItem="SYg-Yb-BtL" secondAttribute="bottom" id="ddE-Mt-YGQ"/>
                             <constraint firstItem="EGm-rG-MGt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="okj-lK-0Ys"/>
-                            <constraint firstItem="EGm-rG-MGt" firstAttribute="top" secondItem="AFm-xs-RSj" secondAttribute="bottom" id="rNZ-ic-jLf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

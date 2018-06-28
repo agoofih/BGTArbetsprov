@@ -62,13 +62,9 @@
 		261A66AD20E397FE0020DFA1 /* BGTArbetsprov */ = {
 			isa = PBXGroup;
 			children = (
+				268A4B6020E51A3E0080032F /* Extra */,
 				268A4B5F20E51A0B0080032F /* VC */,
 				261A66AE20E397FE0020DFA1 /* AppDelegate.swift */,
-				261A66B020E397FE0020DFA1 /* ViewController.swift */,
-				261A66C420E4D4FA0020DFA1 /* DetailViewController.swift */,
-				261A66C620E4E8D70020DFA1 /* WebKitViewController.swift */,
-				261A66C220E3A3140020DFA1 /* TableViewCell.swift */,
-				261A66C020E398290020DFA1 /* XMLParser.swift */,
 				261A66B220E397FE0020DFA1 /* Main.storyboard */,
 				261A66B520E397FF0020DFA1 /* Assets.xcassets */,
 				261A66B720E397FF0020DFA1 /* LaunchScreen.storyboard */,
@@ -80,8 +76,20 @@
 		268A4B5F20E51A0B0080032F /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				261A66B020E397FE0020DFA1 /* ViewController.swift */,
+				261A66C620E4E8D70020DFA1 /* WebKitViewController.swift */,
+				261A66C420E4D4FA0020DFA1 /* DetailViewController.swift */,
 			);
 			path = VC;
+			sourceTree = "<group>";
+		};
+		268A4B6020E51A3E0080032F /* Extra */ = {
+			isa = PBXGroup;
+			children = (
+				261A66C220E3A3140020DFA1 /* TableViewCell.swift */,
+				261A66C020E398290020DFA1 /* XMLParser.swift */,
+			);
+			path = Extra;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

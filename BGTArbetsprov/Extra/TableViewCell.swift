@@ -21,11 +21,5 @@ class TableViewCell: UITableViewCell {
             descriptionLabel.text = item.description
         }
     }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
 
 }
