@@ -10,6 +10,8 @@ import UIKit
 import WebKit
 
 class WebKitViewController: UIViewController {
+    
+    var recivedLinkWeb : String = ""
 
     @IBOutlet weak var webView: WKWebView!
     
@@ -20,7 +22,7 @@ class WebKitViewController: UIViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        let url = URL(string: "https://google.se")
+        let url = URL(string: recivedLinkWeb)
         let urlRequest = URLRequest(url: url!)
         webView.load(urlRequest)
     }

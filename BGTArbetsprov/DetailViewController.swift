@@ -44,8 +44,18 @@ class DetailViewController: UIViewController {
         reloadInputViews()
     }
     
+    @IBAction func readMoreAction(_ sender: Any) {
+        self.performSegue(withIdentifier: "webSegue", sender: self)
+    }
+    
     @IBAction func closeButtonAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let reciverVC = segue.destination as! WebKitViewController
+
+        reciverVC.recivedLinkWeb = recivedLink
     }
 
 

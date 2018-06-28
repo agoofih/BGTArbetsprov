@@ -120,10 +120,8 @@
                                     <constraint firstAttribute="width" constant="40" id="OaP-zA-Sbr"/>
                                     <constraint firstAttribute="height" constant="40" id="hlk-3i-hpI"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="x">
-                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <state key="normal" title="Close"/>
                                 <connections>
                                     <action selector="closeButtonAction:" destination="YWz-Vo-cdx" eventType="touchUpInside" id="2LY-Cn-411"/>
                                 </connections>
@@ -164,10 +162,10 @@
                                     <constraint firstAttribute="width" constant="74" id="4pc-Cv-JpS"/>
                                     <constraint firstAttribute="height" constant="33" id="vaF-Wb-r3s"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                 <state key="normal" title="Read more"/>
                                 <connections>
-                                    <segue destination="Nqh-ff-buC" kind="show" identifier="webSegue" id="PuF-Y5-iYB"/>
+                                    <action selector="readMoreAction:" destination="YWz-Vo-cdx" eventType="touchUpInside" id="fJc-Vh-7I9"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -198,6 +196,7 @@
                         <outlet property="detailDate" destination="UZU-Lw-tWd" id="AsD-RF-t22"/>
                         <outlet property="detailDescription" destination="jTP-Oy-dhG" id="nIe-MH-AsE"/>
                         <outlet property="detailTitle" destination="hPJ-P9-6fk" id="jYc-ic-993"/>
+                        <segue destination="Nqh-ff-buC" kind="show" identifier="webSegue" id="riZ-Cg-7V1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mTE-iM-9OW" userLabel="First Responder" sceneMemberID="firstResponder"/>
