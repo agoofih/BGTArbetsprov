@@ -13,14 +13,25 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var closeButton: UIButton!
     
     @IBOutlet weak var detailTitle: UILabel!
+    @IBOutlet weak var detailDate: UILabel!
+    @IBOutlet weak var detailDescription: UILabel!
+    @IBOutlet weak var detailCredit: UILabel!
     
     var recivedTitle : String = ""
+    var recivedDate : String = ""
+    var recivedDescription : String = ""
+    var recivedLink : String = ""
+    var revicedCredit : String = ""
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         detailTitle.text = recivedTitle
+        detailDate.text = recivedDate
+        detailDescription.text = recivedDescription
+        detailCredit.text = "Credit: \(revicedCredit)"
+        
         // Do any additional setup after loading the view.
     }
 
@@ -36,15 +47,6 @@ class DetailViewController: UIViewController {
     @IBAction func closeButtonAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-    
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

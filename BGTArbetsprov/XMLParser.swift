@@ -12,6 +12,8 @@ struct RSSItem {
     var title : String
     var description : String
     var pubDate : String
+    var link : String
+    var credit : String
 }
 
 class FeedParser : NSObject, XMLParserDelegate {
@@ -31,6 +33,16 @@ class FeedParser : NSObject, XMLParserDelegate {
     private var currentPubDate : String = "" {
         didSet {
             currentPubDate = currentPubDate.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        }
+    }
+    private var currentLink : String = "" {
+        didSet {
+            currentLink = currentLink.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        }
+    }
+    private var currentCredit : String = "" {
+        didSet {
+            currentCredit = currentCredit.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         }
     }
     private var parserCompletionHandler : (([RSSItem]) -> Void )?
@@ -60,6 +72,8 @@ class FeedParser : NSObject, XMLParserDelegate {
             currentTitle = ""
             currentDescription = ""
             currentPubDate = ""
+            currentLink = ""
+            currentCredit = ""
         }
     }
     
@@ -68,13 +82,15 @@ class FeedParser : NSObject, XMLParserDelegate {
             case "title" : currentTitle += string
             case "description" : currentDescription += string
             case "pubDate" : currentPubDate += string
+            case "link" : currentLink += string
+            case "media:credit" : currentCredit += string
             default : break
         }
     }
     
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if elementName == "item" {
-            let rssItem = RSSItem(title: currentTitle, description: currentDescription, pubDate: currentPubDate)
+            let rssItem = RSSItem(title: currentTitle, description: currentDescription, pubDate: currentPubDate, link: currentLink, credit: currentCredit)
             self.rssItem.append(rssItem)
         }
     }

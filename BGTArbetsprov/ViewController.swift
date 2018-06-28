@@ -57,6 +57,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         sendValueTitle = (rssItems?[indexPath.item].title)!
         sendValueDate = (rssItems?[indexPath.item].pubDate)!
         sendValueDescription = (rssItems?[indexPath.item].description)!
+        sendValueLink = (rssItems?[indexPath.item].link)!
+        sendValueCredit = (rssItems?[indexPath.item].credit)!
         
         self.performSegue(withIdentifier: "detailSegue", sender: indexPath)
     }
@@ -75,7 +77,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let reciverVC = segue.destination as! DetailViewController
         reciverVC.recivedTitle = sendValueTitle
-        print(sendValueTitle)
+        reciverVC.recivedDate = sendValueDate
+        reciverVC.recivedDescription = sendValueDescription
+        reciverVC.recivedLink = sendValueLink
+        reciverVC.revicedCredit = sendValueCredit
     }
 }
 
