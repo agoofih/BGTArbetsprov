@@ -16,34 +16,52 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var detailDate: UILabel!
     @IBOutlet weak var detailDescription: UILabel!
     @IBOutlet weak var detailCredit: UILabel!
+    @IBOutlet weak var detailImageView: UIImageView!
     
     var recivedTitle : String = ""
     var recivedDate : String = ""
     var recivedDescription : String = ""
     var recivedLink : String = ""
     var revicedCredit : String = ""
+    var recivedImageURL : String = ""
     
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-
+        let urlImage = URL(string: recivedImageURL)
         detailTitle.text = recivedTitle
         detailDate.text = recivedDate
         detailDescription.text = recivedDescription
         detailCredit.text = "Credit: \(revicedCredit)"
+        detailImageView.layer.cornerRadius = detailImageView.frame.width / 2
+        detailImageView.clipsToBounds = true
         
-        // Do any additional setup after loading the view.
+        let session = URLSession(configuration: .default)
+
+        let getImageFromUrl = session.dataTask(with: urlImage!) { (data, response, error) in
+            if let e = error {
+                print("Error: \(e)")
+            } else {
+                if (response as? HTTPURLResponse) != nil {
+                    if let imageData = data {
+                        let image = UIImage(data: imageData)
+                        
+                        DispatchQueue.main.sync {
+                            self.detailImageView.image = image
+                        }
+                    } else {
+                        print("Image file problem")
+                    }
+                } else {
+                    print("No response from server")
+                }
+            }
+        }
+        getImageFromUrl.resume()
+        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        reloadInputViews()
-    }
-    
     @IBAction func readMoreAction(_ sender: Any) {
         self.performSegue(withIdentifier: "webSegue", sender: self)
     }

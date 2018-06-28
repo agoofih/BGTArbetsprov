@@ -62,6 +62,7 @@
 		261A66AD20E397FE0020DFA1 /* BGTArbetsprov */ = {
 			isa = PBXGroup;
 			children = (
+				268A4B5F20E51A0B0080032F /* VC */,
 				261A66AE20E397FE0020DFA1 /* AppDelegate.swift */,
 				261A66B020E397FE0020DFA1 /* ViewController.swift */,
 				261A66C420E4D4FA0020DFA1 /* DetailViewController.swift */,
@@ -74,6 +75,13 @@
 				261A66BA20E397FF0020DFA1 /* Info.plist */,
 			);
 			path = BGTArbetsprov;
+			sourceTree = "<group>";
+		};
+		268A4B5F20E51A0B0080032F /* VC */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = VC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

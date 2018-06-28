@@ -14,38 +14,44 @@ struct RSSItem {
     var pubDate : String
     var link : String
     var credit : String
+    var imageURL : String
 }
 
 class FeedParser : NSObject, XMLParserDelegate {
     
-    private var rssItem : [RSSItem] = []
-    private var currentElement = ""
-    private var currentTitle : String = "" {
+    var rssItem : [RSSItem] = []
+    var currentElement = ""
+    var currentTitle : String = "" {
         didSet {
             currentTitle = currentTitle.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         }
     }
-    private var currentDescription : String = "" {
+    var currentDescription : String = "" {
         didSet {
             currentDescription = currentDescription.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         }
     }
-    private var currentPubDate : String = "" {
+    var currentPubDate : String = "" {
         didSet {
             currentPubDate = currentPubDate.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         }
     }
-    private var currentLink : String = "" {
+    var currentLink : String = "" {
         didSet {
             currentLink = currentLink.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         }
     }
-    private var currentCredit : String = "" {
+    var currentCredit : String = "" {
         didSet {
             currentCredit = currentCredit.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         }
     }
-    private var parserCompletionHandler : (([RSSItem]) -> Void )?
+    var currentImageURL : String = "" {
+        didSet {
+            currentImageURL = currentImageURL.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        }
+    }
+    var parserCompletionHandler : (([RSSItem]) -> Void )?
     
     func parseFeed(url: String, completionHandler: (([RSSItem]) -> Void)?) {
         self.parserCompletionHandler = completionHandler
@@ -67,13 +73,27 @@ class FeedParser : NSObject, XMLParserDelegate {
     }
     
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
+        
         currentElement = elementName
-        if currentElement == "item" {
-            currentTitle = ""
-            currentDescription = ""
-            currentPubDate = ""
-            currentLink = ""
-            currentCredit = ""
+        
+        switch currentElement {
+        case "item":
+            currentTitle = String()
+            currentDescription = String()
+            currentPubDate = String()
+            currentLink = String()
+            currentCredit = String()
+            currentImageURL = String()
+            
+        case "enclosure":
+            if let urlString = attributeDict["url"] {
+                print(urlString)
+                print("enc details")
+                currentImageURL += urlString
+            } else {
+                print("malformed element: enclosure without url attribute")
+            }
+        default : break
         }
     }
     
@@ -84,13 +104,14 @@ class FeedParser : NSObject, XMLParserDelegate {
             case "pubDate" : currentPubDate += string
             case "link" : currentLink += string
             case "media:credit" : currentCredit += string
+            
             default : break
         }
     }
     
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if elementName == "item" {
-            let rssItem = RSSItem(title: currentTitle, description: currentDescription, pubDate: currentPubDate, link: currentLink, credit: currentCredit)
+            let rssItem = RSSItem(title: currentTitle, description: currentDescription, pubDate: currentPubDate, link: currentLink, credit: currentCredit, imageURL: currentImageURL)
             self.rssItem.append(rssItem)
         }
     }

@@ -18,25 +18,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var sendValueDescription : String = ""
     var sendValueLink : String = ""
     var sendValueCredit : String = ""
+    var sendValueImageURL : String = ""
     
     @IBOutlet weak var tableView: UITableView!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
         tableView.estimatedRowHeight = 150.0
         tableView.rowHeight = UITableViewAutomaticDimension
-        
         getData()
         self.tableView.addSubview(self.refreshControl)
-        
-        
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
+ 
     }
     
     lazy var refreshControl: UIRefreshControl = {
@@ -52,9 +45,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
         
         getData()
-        
         self.tableView.reloadData()
         refreshControl.endRefreshing()
+        
     }
     
     private func getData() {
@@ -63,12 +56,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             (rssItems) in
             self.rssItems = rssItems
             OperationQueue.main.addOperation {
-                print(self.rssItems?.count)
                 if self.rssItems?.count != 0 {
-                    
+                    self.tableView.reloadSections(IndexSet(integer: 0), with: .left)
                 }
-                self.tableView.reloadSections(IndexSet(integer: 0), with: .left)
-                
             }
         }
         
@@ -101,6 +91,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         sendValueDescription = (rssItems?[indexPath.item].description)!
         sendValueLink = (rssItems?[indexPath.item].link)!
         sendValueCredit = (rssItems?[indexPath.item].credit)!
+        sendValueImageURL = (rssItems?[indexPath.item].imageURL)!
         
         self.performSegue(withIdentifier: "detailSegue", sender: indexPath)
     }
@@ -112,6 +103,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         reciverVC.recivedDescription = sendValueDescription
         reciverVC.recivedLink = sendValueLink
         reciverVC.revicedCredit = sendValueCredit
+        reciverVC.recivedImageURL = sendValueImageURL
     }
 }
 
