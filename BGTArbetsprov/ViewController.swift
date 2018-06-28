@@ -13,6 +13,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     private var rssItems : [RSSItem]?
     private let url = "http://www.dailymail.co.uk/sport/index.rss"
     
+    var sendValueTitle : String = ""
+    var sendValueDate : String = ""
+    var sendValueDescription : String = ""
+    var sendValueLink : String = ""
+    var sendValueCredit : String = ""
+    
     @IBOutlet weak var tableView: UITableView!
     
     
@@ -47,6 +53,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        sendValueTitle = (rssItems?[indexPath.item].title)!
+        sendValueDate = (rssItems?[indexPath.item].pubDate)!
+        sendValueDescription = (rssItems?[indexPath.item].description)!
+        
+        self.performSegue(withIdentifier: "detailSegue", sender: indexPath)
+    }
+
     private func getData() {
         let feedParser = FeedParser()
         feedParser.parseFeed(url: url) {
@@ -55,20 +69,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             OperationQueue.main.addOperation {
                 self.tableView.reloadSections(IndexSet(integer: 0), with: .left)
             }
-            
         }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let reciverVC = segue.destination as! DetailViewController
-        
+        reciverVC.recivedTitle = sendValueTitle
+        print(sendValueTitle)
     }
-
-
 }
 

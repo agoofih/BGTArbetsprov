@@ -79,7 +79,6 @@
                                             <outlet property="dateLabel" destination="THC-8v-ppR" id="Dab-6A-Qxx"/>
                                             <outlet property="descriptionLabel" destination="Bl7-On-wcf" id="XSN-hK-S46"/>
                                             <outlet property="titleLabel" destination="tkf-rX-NXX" id="F7d-RA-Fng"/>
-                                            <segue destination="YWz-Vo-cdx" kind="show" identifier="detailSegue" id="SHm-kk-QAf"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -103,6 +102,7 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="EGm-rG-MGt" id="8Dy-tx-TgP"/>
+                        <segue destination="YWz-Vo-cdx" kind="show" identifier="detailSegue" id="Fwm-sx-acf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -131,21 +131,34 @@
                                     <action selector="closeButtonAction:" destination="YWz-Vo-cdx" eventType="touchUpInside" id="2LY-Cn-411"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hPJ-P9-6fk">
+                                <rect key="frame" x="0.0" y="90" width="375" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="U6a-7j-EWX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="E9x-12-aFq" firstAttribute="leading" secondItem="e9v-Iq-9Y8" secondAttribute="leading" constant="15" id="BGc-Qn-ruq"/>
+                            <constraint firstItem="e9v-Iq-9Y8" firstAttribute="trailing" secondItem="hPJ-P9-6fk" secondAttribute="trailing" id="Kt0-cA-muc"/>
+                            <constraint firstItem="hPJ-P9-6fk" firstAttribute="top" secondItem="e9v-Iq-9Y8" secondAttribute="top" constant="70" id="ODi-gS-OX8"/>
+                            <constraint firstItem="hPJ-P9-6fk" firstAttribute="leading" secondItem="e9v-Iq-9Y8" secondAttribute="leading" id="cC8-AU-Ug6"/>
                             <constraint firstItem="E9x-12-aFq" firstAttribute="top" secondItem="e9v-Iq-9Y8" secondAttribute="top" constant="15" id="gRu-XX-dfS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="e9v-Iq-9Y8"/>
                     </view>
                     <connections>
                         <outlet property="closeButton" destination="E9x-12-aFq" id="Wdb-fh-6mH"/>
+                        <outlet property="detailTitle" destination="hPJ-P9-6fk" id="jYc-ic-993"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mTE-iM-9OW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1006" y="118"/>
+            <point key="canvasLocation" x="1025" y="118"/>
         </scene>
     </scenes>
 </document>
