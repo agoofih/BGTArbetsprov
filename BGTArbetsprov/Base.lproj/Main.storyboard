@@ -98,6 +98,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="searchBar" destination="AFm-xs-RSj" id="jVv-5q-MvT"/>
                         <outlet property="tableView" destination="EGm-rG-MGt" id="8Dy-tx-TgP"/>
                         <segue destination="YWz-Vo-cdx" kind="show" identifier="detailSegue" id="Fwm-sx-acf"/>
                     </connections>

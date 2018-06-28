@@ -30,6 +30,48 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.rowHeight = UITableViewAutomaticDimension
         
         getData()
+        self.tableView.addSubview(self.refreshControl)
+        
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+    }
+    
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action:
+            #selector(ViewController.handleRefresh(_:)),
+                                 for: UIControlEvents.valueChanged)
+        refreshControl.tintColor = UIColor.gray
+        
+        return refreshControl
+    }()
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        
+        getData()
+        
+        self.tableView.reloadData()
+        refreshControl.endRefreshing()
+    }
+    
+    private func getData() {
+        let feedParser = FeedParser()
+        feedParser.parseFeed(url: url) {
+            (rssItems) in
+            self.rssItems = rssItems
+            OperationQueue.main.addOperation {
+                print(self.rssItems?.count)
+                if self.rssItems?.count != 0 {
+                    
+                }
+                self.tableView.reloadSections(IndexSet(integer: 0), with: .left)
+                
+            }
+        }
+        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -61,17 +103,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         sendValueCredit = (rssItems?[indexPath.item].credit)!
         
         self.performSegue(withIdentifier: "detailSegue", sender: indexPath)
-    }
-
-    private func getData() {
-        let feedParser = FeedParser()
-        feedParser.parseFeed(url: url) {
-            (rssItems) in
-            self.rssItems = rssItems
-            OperationQueue.main.addOperation {
-                self.tableView.reloadSections(IndexSet(integer: 0), with: .left)
-            }
-        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
